@@ -1,10 +1,16 @@
+import React from 'react'
 import ReactDOM from "react-dom/client";
 import Header from "./components/header";
 import ContentCard from "./components/content_card";
-import { Grid, Stack, Box } from "@mui/material";
+import { Grid, Box, Stack } from "@mui/material";
 import "./index.css";
+import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import AboutMe from "./components/aboutme";
 const image = require('./images/crane.png');
 const curriculum_image = require('./images/curriculum-test.jpg');
+
+document.title = "myportfolio";
+document.body.style.overflow = 'hidden';
 
 const root = ReactDOM.createRoot(
         document.getElementById('root') as HTMLElement
@@ -28,9 +34,9 @@ interface CardData {
 }
 
 const card_data: CardData[] = [
-    { name: "TESTESTEST2", link: "test", image_url: curriculum_image },
-    { name: "TESTESTEST2", link: "test", image_url: curriculum_image },
-    { name: "TESTESTEST2", link: "test", image_url: curriculum_image },
+    { name: "Minecraft OpenGL", link: "https://github.com/Alfurtx/minecraft_opengl", image_url: curriculum_image },
+    { name: "Yet Another Window Manager", link: "https://github.com/Alfurtx/yawm", image_url: curriculum_image },
+    { name: "Homedrive", link: "https://github.com/Alfurtx/homedrive", image_url: curriculum_image },
 ];
 
 const ProjectCard = () => {
@@ -46,26 +52,51 @@ const ProjectCard = () => {
     </Stack>
 }
 
-root.render(
-    <Stack spacing={2} style={{height: '100vh'}}>
-        <Header/>
-        <Grid
-            direction="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            style={{
-                    paddingLeft: '1%',
-                    paddingRight: '1%',
-                }}
-            container>
-            <Grid container spacing={2} direction="row" wrap="nowrap" style={{height: '100vh'}}>
-                <Grid item xs>
-                    <ContentCard name="CURRICULUM" link="test" image_url={curriculum_image}/>
-                </Grid>
-                <Grid item xs>
-                    <ProjectCard/>
+const Home = () => {
+    return(
+        <Box sx={{ height: '100vh',
+                   display: 'flex',
+                   m: 2,
+                   }}>
+        <Stack spacing={2} style={{ height: '100%'}}>
+            <Grid
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="center"
+                style={{
+                        paddingLeft: '1%',
+                        paddingRight: '1%',
+                    }}
+                container>
+                <Grid container spacing={2} direction="row" wrap="nowrap" style={{height: '100vh'}}>
+                    <Grid item xs>
+                        <ContentCard name="Curriculum" link="" image_url={curriculum_image}/>
+                    </Grid>
+                    <Grid item xs>
+                        <ProjectCard/>
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-    </Stack>
+        </Stack>
+        </Box>
+    );
+}
+
+const App = () => {
+    return(
+        <div className="App">
+            <Header/>
+            <HashRouter>
+            <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/home" element={<Home />}/>
+                <Route path="/aboutme" element={<AboutMe />}/>
+            </Routes>
+            </HashRouter>
+        </div>
+    );
+}
+
+root.render(
+    <App/>
 );

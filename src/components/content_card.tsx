@@ -31,9 +31,9 @@ class ContentCard extends React.Component<ContentCardProps, ContentCardState> {
             <Card style={{
                 position: 'relative',
                 display: 'flex',
-                height: this.props.height != undefined ? this.props.height : '90%'
+                height: this.props.height !== undefined ? this.props.height : '90%'
             }}>
-                <CardActionArea>
+                <CardActionArea href={this.props.link}>
                     <div>
                         <CardMedia
                             image={

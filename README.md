@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Fonsi TODOs
+
+[ ] make about me page
+[ ] make contact page
+[ ] make pages for each project?
+[ ] change background image
+
 ## Available Scripts
 
 In the project directory, you can run:
